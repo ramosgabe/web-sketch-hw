@@ -25,6 +25,8 @@ body {
   transform-origin: 50% 100%;
   transform: rotateY(45deg) rotateX(0);
   transition: transform 10s;
+  top: 25%;
+  cursor: pointer;
 }
 
 .cubeFace {
@@ -72,10 +74,10 @@ body:hover .cube {
   
 .line {
  position: absolute;
-  left: calc(40% + 20% + 1in); /* Adjust as needed */
-  top: 0; /* Adjust as needed */
-  height: 100%; /* Adjust as needed */
-  width: 2px; /* Adjust as needed */
+  left: calc(40% + 20% + 1in); 
+  top: 0; 
+  height: 100%; 
+  width: 2px; 
   background-color: white;
 }
 </style>
@@ -86,6 +88,15 @@ body:hover .cube {
     <div class="cubeFace"></div>
     <div class="cubeFace face2"></div>
   </div>
-<div class="line"></div>
+  <div class="line"></div>
+</div>
+
+<script>
+document.getElementById("cube").addEventListener("click", function() {
+  this.classList.toggle("start-animation");
+});
+</script>
+  
+  
 </body>
 </html>
