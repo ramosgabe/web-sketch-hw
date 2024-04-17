@@ -19,7 +19,7 @@ body {
 }
 .rectangle {
   position: relative;
-  padding-bottom: 20%;
+  padding-bottom: 40%;
   transform-style: preserve-3d;
   transform-origin: 50% 100%;
   transform: rotateY(45deg) rotateX(0);
@@ -28,17 +28,8 @@ body {
   bottom: 50%;
   left: 60%;
   right: 0%;
+  height: auto;
   }
-  
-/*   top: 5%;
-  bottom: auto;
-  left: 60%;
-  width: 40%;
-  height: 90%;
-  transform: rotateY(45deg) rotateX(0) scaleX(2) scaleY(1.4);
-  transform-origin: top left;
-  transition: transform 1s;
-} */
 .cube {
   position: relative;
   padding-bottom: 20%;
@@ -112,7 +103,7 @@ body:hover .cube {
   font-family: Courier New, Monospace;
 }
 
-.cube .letter {
+.cube.letter {
   transform-style: preserve-3d;
 }
 
@@ -134,8 +125,6 @@ body:hover .cube {
   width: 3px;
   background-color: white;
 }
-
-
 
 </style>
 </head>
@@ -164,31 +153,45 @@ body:hover .cube {
   
 document.addEventListener("DOMContentLoaded", function() {
   var rightCube = document.querySelector(".cube.right");
-  var isTransformed = false; // Flag to track if cube is transformed
+  var isTransformed = false;
 
   function transformToRectangle() {
     rightCube.classList.add("rectangle");
     isTransformed = true;
     rightCube.style.transition = "transform 10s"; 
     rightCube.style.transform = "rotateY(1405deg) rotateX(1360deg) scaleX(0.4) scaleY(1.8)";
+    
+    var frontLetter = rightCube.querySelector(".letter.front");
+    if (frontLetter) {
+      frontLetter.textContent = "TRANSFORM";
+      frontLetter.style.fontSize = "24px";
+      frontLetter.style.textAlign = "left";
+      frontLetter.style.transform = "translateX(-15%)";
+    }
   }
 
   function transformToCube() {
     rightCube.classList.remove("rectangle");
     isTransformed = false;
-    rightCube.style.transition = "transform 10s"; // Adjust the duration as needed
-    rightCube.style.transform = ""; // Reset transformation
+    rightCube.style.transition = "transform 10s";
+    rightCube.style.transform = "";
+    
+      var frontLetter = rightCube.querySelector(".letter.front");
+    if (frontLetter) {
+      frontLetter.textContent = "COPY"
+      frontLetter.style.fontSize = "24px";
+      frontLetter.style.textAlign = "center";
+      frontLetter.style.transform = "translateX(0%)";
+    }
   }
 
   function handleMouseOver(event) {
-    // Initiate the transformation only if the right cube is not already transformed
     if (!isTransformed) {
       transformToRectangle();
     }
   }
 
   function handleMouseOut(event) {
-    // Initiate the transformation back to cube if the right cube is transformed
     if (isTransformed) {
       transformToCube();
     }
@@ -198,197 +201,8 @@ document.addEventListener("DOMContentLoaded", function() {
   document.addEventListener("mouseout", handleMouseOut);
   
 });
-  
-  
-  
 
-// document.addEventListener("DOMContentLoaded", function() {
-//   var rightCube = document.querySelector(".cube.right");
-//   var isTransformed = false; // Flag to track if cube is transformed
-
-//   function transformToRectangle() {
-//     rightCube.classList.add("rectangle");
-//     isTransformed = true;
-//     rightCube.style.transition = "none"; // Remove transition temporarily
-//     rightCube.style.transform = "rotateY(1405deg) rotateX(1360deg) scaleX(2) scaleY(1.4)";
-//   }
-
-//   function transformToCube() {
-//     rightCube.classList.remove("rectangle");
-//     isTransformed = false;
-//     rightCube.style.transition = ""; // Restore transition
-//     rightCube.style.transform = ""; // Reset transformation
-//   }
-
-//   function scrollHandler(event) {
-//     if (event.deltaY > 0 && !isTransformed) {
-//       // Scroll down and not already transformed: Transform to rectangle
-//       transformToRectangle();
-//     } else if (event.deltaY < 0 && isTransformed) {
-//       // Scroll up and already transformed: Transform back to cube
-//       transformToCube();
-//     }
-//   }
-
-//   function handleMouseOut(event) {
-//     // Check if the mouse is out of the document
-//     if (event.relatedTarget === null) {
-//       // If the cube is transformed, transform it back to cube
-//       if (isTransformed) {
-//         transformToCube();
-//       }
-//     }
-//   }
-
-//   window.addEventListener("wheel", scrollHandler);
-//   document.addEventListener("mouseout", handleMouseOut);
-// });
-
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   var rightCube = document.querySelector(".cube.right");
-//   var isTransformed = false; // Flag to track if cube is transformed
-
-//   function transformToRectangle() {
-//     rightCube.classList.add("rectangle");
-//     rightCube.style.transform = "rotateY(1405deg) rotateX(1360deg)"; // Adjust rotation
-//     isTransformed = true;
-//   }
-
-//   function transformToCube() {
-//     rightCube.classList.remove("rectangle");
-//     rightCube.style.transform = ""; // Reset rotation
-//     isTransformed = false;
-//   }
-
-//   function scrollHandler(event) {
-//     if (event.deltaY > 0 && !isTransformed) {
-//       // Scroll down and not already transformed: Transform to rectangle
-//       transformToRectangle();
-//     } else if (event.deltaY < 0 && isTransformed) {
-//       // Scroll up and already transformed: Transform back to cube
-//       transformToCube();
-//     }
-//   }
-
-//   function handleMouseOut(event) {
-//     // Check if the mouse is out of the document
-//     if (event.relatedTarget === null) {
-//       // If the cube is transformed, transform it back to cube
-//       if (isTransformed) {
-//         transformToCube();
-//       }
-//     }
-//   }
-
-//   window.addEventListener("wheel", scrollHandler);
-//   document.addEventListener("mouseout", handleMouseOut);
-// });
-// document.addEventListener("DOMContentLoaded", function() {
-//   var rightCube = document.querySelector(".cube.right");
-//   var isTransformed = false; // Flag to track if cube is transformed
-
-//   function transformToRectangle() {
-//     rightCube.classList.add("rectangle");
-//     rightCube.style.transform = "rotateY(1405deg) rotateX(1360deg)"; // Adjust rotation
-//     isTransformed = true;
-//   }
-
-//   function transformToCube() {
-//     rightCube.classList.remove("rectangle");
-//     rightCube.style.transform = ""; // Reset rotation
-//     isTransformed = false;
-//   }
-
-//   function scrollHandler(event) {
-//     if (event.deltaY > 0 && !isTransformed) {
-//       // Scroll down and not already transformed: Transform to rectangle
-//       transformToRectangle();
-//     } else if (event.deltaY < 0 && isTransformed) {
-//       // Scroll up and already transformed: Transform back to cube
-//       transformToCube();
-//     }
-//   }
-
-//   window.addEventListener("wheel", scrollHandler);
-// });
-// document.addEventListener("DOMContentLoaded", function() {
-//   var rightCube = document.querySelector(".cube.right");
-//   var isTransformed = false; // Flag to track if cube is transformed
-
-//   function transformToRectangle() {
-//     rightCube.classList.add("rectangle");
-//     isTransformed = true;
-//     // Remove the scroll event listener after transformation
-//     window.removeEventListener("wheel", scrollHandler);
-//   }
-
-//   function transformToCube() {
-//     rightCube.classList.remove("rectangle");
-//     isTransformed = false;
-//     // Remove the scroll event listener after returning to cube
-//     window.removeEventListener("wheel", scrollHandler);
-//   }
-
-//   function scrollHandler(event) {
-//     if (event.deltaY > 0 && !isTransformed) {
-//       // Scroll down and not already transformed: Transform to rectangle
-//       transformToRectangle();
-//     } else if (event.deltaY < 0 && isTransformed) {
-//       // Scroll up and already transformed: Transform back to cube
-//       transformToCube();
-//     }
-//   }
-
-//   window.addEventListener("wheel", scrollHandler);
-// });
-
-// document.addEventListener("DOMContentLoaded", function() {
-//   var rightCube = document.querySelector(".cube.right");
-
-//   function transformToRectangle() {
-//     rightCube.classList.add("rectangle");
-//     // Optionally remove the scroll event listener after transformation
-//     window.removeEventListener("wheel", scrollHandler);
-//   }
-
-//   function scrollHandler(event) {
-//     if (event.deltaY > 0) { // Check if user scrolls down
-//       transformToRectangle();
-//     }
-//   }
-
-//   window.addEventListener("wheel", scrollHandler);
-// });
-// document.addEventListener("DOMContentLoaded", function() {
-//   var rightCube = document.querySelector(".cube.right");
-
-//   function transformToRectangle() {
-//     rightCube.classList.add("rectangle");
-//     // Remove the scroll event listener after transformation
-//     window.removeEventListener("wheel", scrollHandler);
-//   }
-
-//   function transformToCube() {
-//     rightCube.classList.remove("rectangle");
-//     // Remove the scroll event listener after returning to cube
-//     window.removeEventListener("wheel", scrollHandler);
-//   }
-
-//   function scrollHandler(event) {
-//     if (event.deltaY > 0) {
-//       // Scroll down: Transform to rectangle
-//       transformToRectangle();
-//     } else {
-//       // Scroll up: Transform back to cube
-//       transformToCube();
-//     }
-//   }
-
-//   window.addEventListener("wheel", scrollHandler);
-// });
 </script>
-  
   
 </body>
 </html>
