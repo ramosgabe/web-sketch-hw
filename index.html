@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Textured Background</title>
 <style>
 body {
   perspective: 1500px;
@@ -17,6 +20,7 @@ body {
   width: 500px;
   height: 500px;
 }
+  
 .rectangle {
   position: relative;
   padding-bottom: 40%;
@@ -58,7 +62,7 @@ body {
   height: 100%;
   margin: 0 auto;
   transform-style: inherit;
-  background: #f98128;
+  background-image: url('90s-website-style.jpg');
   box-shadow: inset 0 0 5px white;
   transform-origin: 50% 50%;
   transform: rotateX(90deg);
@@ -154,6 +158,7 @@ body:hover .cube {
 document.addEventListener("DOMContentLoaded", function() {
   var rightCube = document.querySelector(".cube.right");
   var isTransformed = false;
+  const background = document.querySelector(".background");
 
   function transformToRectangle() {
     rightCube.classList.add("rectangle");
